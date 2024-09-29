@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-world
+  namespace: nizam-ns
+  labels:
+    app: tutum-app
+spec:
+  containers:
+    - name: hello-world
+      image: tutum/hello-world
+      ports:
+        - containerPort: 80

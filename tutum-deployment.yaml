@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tutum-deployment
+  namespace: nizam-ns
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: tutum-app
+  template:
+    metadata:
+      labels:
+        app: tutum-app
+    spec:
+      containers:
+      - name: tutum-hello
+        image: tutum/hello-world
+        ports:
+          - containerPort: 80

@@ -2,21 +2,60 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-      "clusterName": {
-        "type": "string",
-        "defaultValue": "Tutum-Deployment"
-      },
-      "resourceGroupName": {
-        "type": "string",
-        "defaultValue": "deploy_pipeline"
-      },
-      "location": {
-        "type": "string",
-        "defaultValue": "[resourceGroup().location]"
-      },
-      "nodeCount": {
-        "type": "int",
-        "defaultValue": 2
-      }
+          "clusterName": {
+            "type": "string",
+            "defaultValue": "Tutum-Deployment"
+          },
+          "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]"
+          },
+          "osDiskSizeGB": {
+            "type": "int",
+            "defaultValue": 0,
+            "minValue": 0,
+            "maxValue": 1023,
+            "metadata": {
+              "description": "Disk size (in GB) to provision for each of the agent pool nodes. This value ranges from 0 to 1023. Specifying 0 will apply the default disk size for that agentVMSize."
+            }
+          },
+          "agentCount": {
+            "type": "int",
+            "defaultValue": 2,
+            "minValue": 1,
+            "maxValue": 30,
+            "metadata": {
+              "description": "The number of nodes for the cluster."
+            }
+          },
+          "agentVMSize": {
+            "type": "string",
+            "defaultValue": "Standard_DS2_v2",
+            "metadata": {
+              "description": "The size of the Virtual Machine."
+            }
+          },
+          "osType": {
+            "type": "string",
+            "defaultValue": "Linux",
+            "allowedValues": [
+              "Linux"
+            ],
+            "metadata": {
+              "description": "The type of operating system."
+            }
+          },
+          "osSKU": {
+            "type": "string",
+            "defaultValue": "AzureLinux",
+            "allowedValues": [
+              "AzureLinux",
+              "Ubuntu"
+            ],
+            "metadata": {
+              "description": "The Linux SKU to use."
+            }
+          }
+    
     }
   }

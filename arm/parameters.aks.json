@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "clusterName": {
+        "type": "string",
+        "defaultValue": "Tutum-Deployment"
+      },
+      "resourceGroupName": {
+        "type": "string",
+        "defaultValue": "deploy_pipeline"
+      },
+      "location": {
+        "type": "string",
+        "defaultValue": "[resourceGroup().location]"
+      },
+      "nodeCount": {
+        "type": "int",
+        "defaultValue": 2
+      }
+    }
+  }

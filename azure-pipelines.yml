@@ -23,6 +23,12 @@ steps:
     helm package tutumchart
   displayName: 'Package Helm Chart'
 
+- script: |
+    pwd
+    ls
+    ls /home/vsts/work/1/s/
+  displayName: 'Run ls script'
+
 # Publish the packaged Helm chart as a build artifact
 - task: PublishBuildArtifacts@1
   inputs:

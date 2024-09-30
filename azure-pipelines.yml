@@ -25,7 +25,10 @@ steps:
 
 - script: |
     pwd
-    ls
+    echo listing WorkingDirectory \n
+    ls $(System.DefaultWorkingDirectory)
+    echo $(System.DefaultWorkingDirectory) \n
+    echo listing home! \n
     ls /home/vsts/work/1/s/
   displayName: 'Run ls script'
 
@@ -33,7 +36,7 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     # Path to the Helm package (*.tgz) in the root directory after packaging
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/tutumchart'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/tutumchart*.tgz'
     ArtifactName: 'helm-chart'
     publishLocation: 'Container'
   displayName: 'Publish Helm Chart as Build Artifact'

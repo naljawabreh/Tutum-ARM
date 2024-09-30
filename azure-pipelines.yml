@@ -10,9 +10,6 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
 # Install Helm on the agent
 - task: HelmInstaller@1
   inputs:
@@ -22,13 +19,6 @@ steps:
 - script: |
     helm package tutumchart
   displayName: 'Package Helm Chart'
-
-- script: |
-    pwd
-    echo $(System.DefaultWorkingDirectory)
-    echo listing WorkingDirectory
-    ls $(System.DefaultWorkingDirectory)
-  displayName: 'Run ls script'
 
 # Publish the packaged Helm chart as a build artifact
 - task: PublishBuildArtifacts@1

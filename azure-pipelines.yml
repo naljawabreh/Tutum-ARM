@@ -1,0 +1,39 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+# Install Helm on the agent
+- task: HelmInstaller@1
+  inputs:
+    helmVersionToInstall: 'latest'
+
+# Package the Helm chart
+- script: |
+    helm package tutumchart
+  displayName: 'Package Helm Chart'
+
+- script: |
+    pwd
+    ls
+    ls /home/vsts/work/1/s/
+  displayName: 'Run ls script'
+
+# Publish the packaged Helm chart as a build artifact
+- task: PublishBuildArtifacts@1
+  inputs:
+    # Path to the Helm package (*.tgz) in the root directory after packaging
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/tutumchart'
+    ArtifactName: 'helm-chart'
+    publishLocation: 'Container'
+  displayName: 'Publish Helm Chart as Build Artifact'

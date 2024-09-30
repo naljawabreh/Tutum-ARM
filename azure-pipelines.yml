@@ -13,21 +13,21 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-  # Install Helm on the agent
-  - task: HelmInstaller@1
-    inputs:
-      helmVersionToInstall: 'latest'
-  
-  # Package the Helm chart
-  - script: |
-      helm package tutumchart
-    displayName: 'Package Helm Chart'
-  
-  # Publish the packaged Helm chart as a build artifact
-  - task: PublishBuildArtifacts@1
-    inputs:
-      # Path to the Helm package (*.tgz) in the root directory after packaging
-      PathtoPublish: '$(System.DefaultWorkingDirectory)/*.tgz'
-      ArtifactName: 'helm-chart'
-      publishLocation: 'Container'
-    displayName: 'Publish Helm Chart as Build Artifact'
+# Install Helm on the agent
+- task: HelmInstaller@1
+  inputs:
+    helmVersionToInstall: 'latest'
+
+# Package the Helm chart
+- script: |
+    helm package tutumchart
+  displayName: 'Package Helm Chart'
+
+# Publish the packaged Helm chart as a build artifact
+- task: PublishBuildArtifacts@1
+  inputs:
+    # Path to the Helm package (*.tgz) in the root directory after packaging
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/*.tgz'
+    ArtifactName: 'helm-chart'
+    publishLocation: 'Container'
+  displayName: 'Publish Helm Chart as Build Artifact'

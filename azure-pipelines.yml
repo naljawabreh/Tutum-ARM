@@ -34,7 +34,7 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     # Path to the Helm package (*.tgz) in the root directory after packaging
-    PathtoPublish: '$(System.DefaultWorkingDirectory)/tutumchart-0.1.0.tgz'
+    PathtoPublish: '$(System.DefaultWorkingDirectory)/tutumchart-*.tgz'
     ArtifactName: 'helm-chart'
     publishLocation: 'Container'
   displayName: 'Publish Helm Chart as Build Artifact'
